@@ -1,0 +1,13 @@
+[project]
+name = "3d-interactive-plots"
+version = "0.1.0"
+description = "Interactive 3D plots embedded in FastHTML"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = ">=3.11"
+python-fasthtml = "*"
+plotly = "*"
+numpy = "*"
+pandas = "*"
