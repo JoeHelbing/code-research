@@ -9,6 +9,21 @@ These examples show different types of 3D visualizations that can be embedded di
 1. **3D Surface Plot** (`01_3d_surface.py`) - Visualizes the Sombrero (Mexican Hat) function
 2. **3D Scatter Plot** (`02_3d_scatter.py`) - Shows multiple data clusters in 3D space
 3. **Parametric 3D Surfaces** (`03_3d_parametric.py`) - Displays a torus and helix with custom styling
+4. **Prerendered Static HTML** (`prerender_plots.py`) - Generates a single HTML file with all three plots embedded
+
+## Quick Start
+
+### View Prerendered Plots (No Server Required!)
+
+Simply open `interactive_plots.html` in your web browser. This file contains all three interactive visualizations and works completely offline!
+
+### Regenerate the Static HTML
+
+```bash
+python3 prerender_plots.py
+```
+
+This will regenerate `interactive_plots.html` with all three plots embedded in a single, self-contained file.
 
 ## Key Features
 
