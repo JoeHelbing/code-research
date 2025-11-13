@@ -29,6 +29,10 @@ Button("Click Me", style="background-color: #10b981; color: white; padding: 10px
 - Quick prototypes
 - Component-specific visual tweaks
 
+**Screenshot**:
+
+![Inline Styles Example](screenshots/01_inline_styles.png)
+
 ---
 
 ### 2. Global Styles (`02_global_styles.py`)
@@ -64,6 +68,10 @@ app, rt = fast_app(hdrs=[global_css])
 - When you need CSS features like pseudo-classes (`:hover`)
 - Large applications with reusable styles
 
+**Screenshot**:
+
+![Global Styles Example](screenshots/02_global_styles.png)
+
 ---
 
 ### 3. Dynamic Styles (`03_dynamic_styles.py`)
@@ -94,6 +102,10 @@ Div("Content", style=create_color_style('blue'))
 - Theming systems
 - User preferences
 - Dynamic color schemes
+
+**Screenshot**:
+
+![Dynamic Styles Example](screenshots/03_dynamic_styles.png)
 
 ---
 
@@ -128,6 +140,10 @@ Button("Click", style=dict_to_style(BUTTON_STYLE))
 - When you want Python data structures for styles
 - Easier refactoring and maintenance
 - Style composition and merging
+
+**Screenshot**:
+
+![Style Dictionaries Example](screenshots/04_style_dictionaries.png)
 
 ---
 
@@ -167,6 +183,10 @@ StyledComponents.Card("Title", P("Content"), variant='colored')
 - Component libraries
 - Team consistency
 - Reusable UI elements
+
+**Screenshot**:
+
+![Component-Based Styling Example](screenshots/05_component_styling.png)
 
 ---
 
@@ -210,6 +230,10 @@ Div("Text", cls="text-blue bg-green rounded")
 - When you want Tailwind-like utilities
 - Highly customizable design systems
 - Programmatic style generation
+
+**Screenshot**:
+
+![CSS Class Generator Example](screenshots/06_css_class_generator.png)
 
 ---
 
@@ -366,40 +390,54 @@ def margin(size='md'):
 
 ## Running the Experiments
 
-### Setup
+### Setup with Pixi
+
+This project uses [Pixi](https://pixi.sh) for package management. Pixi automatically creates an isolated environment with all dependencies.
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Install pixi (if not already installed)
+curl -fsSL https://pixi.sh/install.sh | bash
 
-# Install FastHTML
-pip install python-fasthtml
+# Install dependencies (creates .pixi/envs/default as the virtual environment)
+pixi install
+
+# Install Playwright browsers (needed for screenshot generation)
+pixi run install-playwright
 ```
 
 ### Run Individual Experiments
 
 ```bash
 # Run inline styles example
-python 01_inline_styles.py
+pixi run python 01_inline_styles.py
 
 # Run global styles example
-python 02_global_styles.py
+pixi run python 02_global_styles.py
 
 # Run dynamic styles example
-python 03_dynamic_styles.py
+pixi run python 03_dynamic_styles.py
 
 # Run style dictionaries example
-python 04_style_dictionaries.py
+pixi run python 04_style_dictionaries.py
 
 # Run component styling example
-python 05_component_styling.py
+pixi run python 05_component_styling.py
 
 # Run CSS class generator example
-python 06_css_class_generator.py
+pixi run python 06_css_class_generator.py
 ```
 
 Each will start a local server (typically at `http://localhost:5001`).
+
+### Generate Screenshots
+
+To regenerate the screenshots for all experiments:
+
+```bash
+pixi run python capture_screenshots.py
+```
+
+This will automatically start each experiment server, capture a screenshot, and save it to the `screenshots/` directory.
 
 ---
 
