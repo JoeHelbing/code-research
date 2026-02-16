@@ -13,6 +13,8 @@
 
 This course provides a deep, hands-on exploration of the Model Swarms paper — a method that applies **Particle Swarm Optimization (PSO)** to the problem of adapting and composing multiple Large Language Model (LLM) experts. You will learn the theory behind swarm intelligence, understand how it translates to weight-space search over neural networks, implement key components from scratch, and run the authors' code to reproduce experiments.
 
+The entire course is delivered as **interactive Jupyter notebooks** — theory, code, visualizations, and exercises are all integrated step by step.
+
 ### Who This Course Is For
 
 - Python developers with solid data science and ML fundamentals
@@ -35,25 +37,25 @@ This course provides a deep, hands-on exploration of the Model Swarms paper — 
 
 | Module | Title | Format | Est. Time |
 |--------|-------|--------|-----------|
-| 1 | [Introduction: Why Model Swarms?](module_01_introduction.md) | Reading + Discussion | 30 min |
-| 2 | [Background: Swarm Intelligence & PSO](module_02_swarm_intelligence.md) | Theory + Code | 45 min |
-| 3 | [Background: LLM Experts, LoRA & Model Merging](module_03_lora_and_merging.md) | Theory + Code | 45 min |
-| 4 | [The Model Swarms Algorithm: Deep Dive](module_04_algorithm_deep_dive.md) | Paper Analysis + Code | 60 min |
-| 5 | [Code Architecture & Implementation Walkthrough](module_05_code_walkthrough.md) | Code Reading | 45 min |
-| 6 | [Hands-On Lab: Running Experiments](module_06_hands_on_lab.md) | Lab | 45 min |
-| 7 | [Results, Analysis & Ablation Studies](module_07_results_analysis.md) | Paper Analysis + Exercises | 45 min |
-| 8 | [Advanced Topics: Token Swarms, Extensions & Open Problems](module_08_advanced_topics.md) | Reading + Exercises | 30 min |
-| -- | [Exercises & Coding Challenges](exercises.md) | Hands-on | integrated |
+| 1 | [Introduction: Why Model Swarms?](module_01_introduction.ipynb) | Reading + Discussion | 30 min |
+| 2 | [Background: Swarm Intelligence & PSO](module_02_swarm_intelligence.ipynb) | Theory + Code | 45 min |
+| 3 | [Background: LLM Experts, LoRA & Model Merging](module_03_lora_and_merging.ipynb) | Theory + Code | 45 min |
+| 4 | [The Model Swarms Algorithm: Deep Dive](module_04_algorithm_deep_dive.ipynb) | Paper Analysis + Code | 60 min |
+| 5 | [Code Architecture & Implementation Walkthrough](module_05_code_walkthrough.ipynb) | Code Reading | 45 min |
+| 6 | [Hands-On Lab: Running Experiments](module_06_hands_on_lab.ipynb) | Lab | 45 min |
+| 7 | [Results, Analysis & Ablation Studies](module_07_results_analysis.ipynb) | Paper Analysis + Exercises | 45 min |
+| 8 | [Advanced Topics: Token Swarms, Extensions & Open Problems](module_08_advanced_topics.ipynb) | Reading + Exercises | 30 min |
+| -- | [Exercises & Coding Challenges](exercises.ipynb) | Hands-on | integrated |
 
 ---
 
 ## How to Use This Course
 
-1. **Read linearly.** The modules build on each other. Module 1 sets the context, Modules 2-3 provide necessary background, Module 4 is the core algorithm, Modules 5-6 are hands-on with the real code, and Modules 7-8 analyze results and extensions.
+1. **Work through the notebooks linearly.** The modules build on each other. Module 1 sets the context, Modules 2-3 provide necessary background, Module 4 is the core algorithm, Modules 5-6 are hands-on with the real code, and Modules 7-8 analyze results and extensions.
 
-2. **Do the exercises.** Each module contains inline exercises marked with `[Exercise]`. There are also standalone coding challenges in `exercises.md`. The exercises range from conceptual questions to full implementations.
+2. **Run the code cells.** Each notebook is designed to be executed top-to-bottom. Code cells produce visualizations, run tests, and demonstrate algorithms interactively. Fill in the exercise cells as you go.
 
-3. **Run the code.** Module 6 provides step-by-step instructions for setting up and running the actual Model Swarms codebase. You'll need GPU access (at minimum one GPU with 24GB+ VRAM for Gemma-7B).
+3. **Do the exercises.** Each module contains inline exercises. The standalone [exercises notebook](exercises.ipynb) has larger coding challenges including a complete mini-swarm implementation, hyperparameter sensitivity analysis, and ablation studies.
 
 4. **Read the paper alongside.** Keep [the paper](https://arxiv.org/abs/2410.11163) open. This course references specific sections, figures, and tables throughout.
 
@@ -62,7 +64,10 @@ This course provides a deep, hands-on exploration of the Model Swarms paper — 
 ## Quick Setup
 
 ```bash
-# Clone the Model Swarms repository
+# Install dependencies for the course notebooks
+pip install numpy matplotlib torch safetensors jupyter
+
+# Clone the Model Swarms repository (for Module 6 hands-on lab)
 git clone https://github.com/BunsenFeng/model_swarm.git
 cd model_swarm
 
@@ -97,14 +102,14 @@ cd ..
 
 ```
 model-swarms-course/
-├── README.md                          # This file (syllabus)
-├── module_01_introduction.md          # Why Model Swarms?
-├── module_02_swarm_intelligence.md    # PSO theory + implementation
-├── module_03_lora_and_merging.md      # LoRA & model merging background
-├── module_04_algorithm_deep_dive.md   # The core algorithm
-├── module_05_code_walkthrough.md      # Reading the real code
-├── module_06_hands_on_lab.md          # Running experiments
-├── module_07_results_analysis.md      # Understanding the results
-├── module_08_advanced_topics.md       # Extensions & open problems
-└── exercises.md                       # Standalone coding challenges
+├── README.md                              # This file (syllabus)
+├── module_01_introduction.ipynb           # Why Model Swarms?
+├── module_02_swarm_intelligence.ipynb     # PSO theory + implementation
+├── module_03_lora_and_merging.ipynb       # LoRA & model merging background
+├── module_04_algorithm_deep_dive.ipynb    # The core algorithm
+├── module_05_code_walkthrough.ipynb       # Reading the real code
+├── module_06_hands_on_lab.ipynb           # Running experiments
+├── module_07_results_analysis.ipynb       # Understanding the results
+├── module_08_advanced_topics.ipynb        # Extensions & open problems
+└── exercises.ipynb                        # Standalone coding challenges
 ```
