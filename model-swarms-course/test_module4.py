@@ -114,14 +114,14 @@ assert abs(2 * 0.5 * 0.5 / (0.5 + 0.5) - 0.5) < 1e-10, \
 
 print("\n--- Harmonic mean tests PASSED ---")
 
-# Test 3: Position update
+# Test 3: Position update with hand-computed expected values
 position = np.array([0.3, 0.7])
 velocity = np.array([0.265, 0.064])
 step_length = 0.85
 new_position = position + step_length * velocity
 print(f"\nPosition update: {position} + {step_length} * {velocity} = {new_position}")
-expected = position + step_length * velocity
-assert np.allclose(new_position, expected), \
+# Hand-computed: [0.3 + 0.85*0.265, 0.7 + 0.85*0.064] = [0.52525, 0.7544]
+assert np.allclose(new_position, [0.52525, 0.7544]), \
     f"Position update incorrect: {new_position}"
 
 print("\n--- Position update test PASSED ---")
