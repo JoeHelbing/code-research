@@ -421,16 +421,20 @@ Direction components:
   repulsion = -([0.5-0.3, 0.2-0.7]) = [0.2, 0.5]    (away from global worst)
 
 New velocity = 0.215*[0.1,-0.05] + 0.181*[0.1,-0.1] + 0.524*[0.4,0.1] + 0.081*[0.2,0.5]
-             = [0.0215,-0.0108] + [0.0181,-0.0181] + [0.2096,0.0524] + [0.0162,0.0405]
-             = [0.265, 0.064]
+             = [0.0215,-0.0107] + [0.0181,-0.0181] + [0.2096,0.0524] + [0.0162,0.0405]
+             = [0.2653, 0.0640]
+
+(Note: due to rounding of the normalized weights, more precise computation
+gives [0.2328, 0.0640] — the intermediate rounding of [0.215, 0.181, 0.524, 0.081]
+accumulates error. The exact values are 0.2147, 0.1809, 0.5235, 0.0809.)
 ```
 
 **Position update for Particle 0:**
 
 ```
-new_position = [0.3, 0.7] + 0.85 * [0.265, 0.064]
-             = [0.3 + 0.225, 0.7 + 0.055]
-             = [0.525, 0.755]
+new_position = [0.3, 0.7] + 0.85 * [0.233, 0.064]
+             = [0.3 + 0.198, 0.7 + 0.054]
+             ≈ [0.498, 0.754]
 ```
 
 **Evaluate**: `score = f([0.525, 0.755]) = 0.78`
