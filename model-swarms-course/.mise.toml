@@ -1,0 +1,29 @@
+[tools]
+python = "3.11"
+uv = "0.10.3"
+ruff = "0.15.1"
+"npm:pyright" = "1.1.408"
+
+[tasks.setup]
+description = "Create/update the uv environment and install dev dependencies"
+run = "uv sync --frozen --group dev"
+
+[tasks.lint]
+description = "Lint python package, tests, and scripts"
+run = "uv run ruff check src tests scripts"
+
+[tasks.typecheck]
+description = "Static type checks"
+run = "uv run pyright"
+
+[tasks.test]
+description = "Run deterministic unit tests"
+run = "uv run pytest"
+
+[tasks."notebooks:check"]
+description = "Lightweight notebook validation"
+run = "uv run python scripts/check_notebooks.py"
+
+[tasks.verify]
+description = "Run all default quality gates"
+depends = ["lint", "typecheck", "test", "notebooks:check"]

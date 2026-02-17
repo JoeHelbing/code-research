@@ -2,18 +2,16 @@
 
 ## A Comprehensive Course on the Paper, Theory, and Code
 
-**Paper:** [Model Swarms: Collaborative Search to Adapt LLM Experts via Swarm Intelligence](https://arxiv.org/abs/2410.11163)
-**Authors:** Shangbin Feng, Zifeng Wang, Yike Wang, Sayna Ebrahimi, Hamid Palangi, Lesly Miculicich, Achin Kulshrestha, Nathalie Rauschmayr, Yejin Choi, Yulia Tsvetkov, Chen-Yu Lee, Tomas Pfister
-**Venue:** ICML 2025
+**Paper:** [Model Swarms: Collaborative Search to Adapt LLM Experts via Swarm Intelligence](https://arxiv.org/abs/2410.11163)  
+**Authors:** Shangbin Feng, Zifeng Wang, Yike Wang, Sayna Ebrahimi, Hamid Palangi, Lesly Miculicich, Achin Kulshrestha, Nathalie Rauschmayr, Yejin Choi, Yulia Tsvetkov, Chen-Yu Lee, Tomas Pfister  
+**Venue:** ICML 2025  
 **Code:** [github.com/BunsenFeng/model_swarm](https://github.com/BunsenFeng/model_swarm)
 
 ---
 
 ## Course Overview
 
-This course provides a deep, hands-on exploration of the Model Swarms paper — a method that applies **Particle Swarm Optimization (PSO)** to the problem of adapting and composing multiple Large Language Model (LLM) experts. You will learn the theory behind swarm intelligence, understand how it translates to weight-space search over neural networks, implement key components from scratch, and run the authors' code to reproduce experiments.
-
-The entire course is delivered as **interactive Jupyter notebooks** — theory, code, visualizations, and exercises are all integrated step by step.
+This course provides a deep, hands-on exploration of the Model Swarms paper — a method that applies **Particle Swarm Optimization (PSO)** to adapting and composing multiple LLM experts in weight space. The curriculum remains notebook-first, but reusable code now lives in `src/model_swarms_course` and is validated with linting, typing, tests, and notebook checks.
 
 ### Who This Course Is For
 
@@ -23,13 +21,12 @@ The entire course is delivered as **interactive Jupyter notebooks** — theory, 
 
 ### Prerequisites
 
-- Strong Python (3.8+)
+- Python 3.11+
 - PyTorch experience (tensor operations, model loading, GPU usage)
 - Familiarity with Hugging Face `transformers` and `peft` libraries
-- Understanding of what LoRA adapters are (we review this, but prior exposure helps)
-- Basic optimization theory (gradient descent, loss landscapes)
+- Understanding of LoRA adapters (reviewed in Module 3)
 
-### Estimated Time: 5-6 Hours
+### Estimated Time: 5–6 Hours
 
 ---
 
@@ -49,67 +46,67 @@ The entire course is delivered as **interactive Jupyter notebooks** — theory, 
 
 ---
 
-## How to Use This Course
-
-1. **Work through the notebooks linearly.** The modules build on each other. Module 1 sets the context, Modules 2-3 provide necessary background, Module 4 is the core algorithm, Modules 5-6 are hands-on with the real code, and Modules 7-8 analyze results and extensions.
-
-2. **Run the code cells.** Each notebook is designed to be executed top-to-bottom. Code cells produce visualizations, run tests, and demonstrate algorithms interactively. Fill in the exercise cells as you go.
-
-3. **Do the exercises.** Each module contains inline exercises. The standalone [exercises notebook](exercises.ipynb) has larger coding challenges including a complete mini-swarm implementation, hyperparameter sensitivity analysis, and ablation studies.
-
-4. **Read the paper alongside.** Keep [the paper](https://arxiv.org/abs/2410.11163) open. This course references specific sections, figures, and tables throughout.
-
----
-
-## Quick Setup
+## Quick Start (mise + uv)
 
 ```bash
-# Install dependencies for the course notebooks
-pip install numpy matplotlib torch safetensors jupyter
+mise install
+mise run setup
+mise run verify
+```
 
-# Clone the Model Swarms repository (for Module 6 hands-on lab)
-git clone https://github.com/BunsenFeng/model_swarm.git
-cd model_swarm
+### Individual checks
 
-# Create the conda environment
-conda env create -f swarm.yml
-conda activate swarm
+```bash
+mise run lint
+mise run typecheck
+mise run test
+mise run notebooks:check
+```
 
-# Login to Hugging Face (required for Gemma model access)
-huggingface-cli login
+### Running notebooks interactively
 
-# Download initial experts
-cd initial_experts
-python initial_experts.py
-cd ..
+```bash
+uv run jupyter lab
 ```
 
 ---
 
-## Key Concepts You Will Learn
+## Heavy Experiment Path (Optional)
 
-- **Particle Swarm Optimization** — a population-based metaheuristic for non-convex search
-- **Weight-space arithmetic** — how linearly combining model weights produces new behaviors
-- **LoRA adapters** — efficient parameter representations that make weight-space search tractable
-- **Utility functions** — how to define what "good" means for model adaptation
-- **Collaborative search dynamics** — how particles balance exploration vs. exploitation
-- **Correctness emergence** — how search discovers capabilities absent from any individual expert
-- **Model composition baselines** — the landscape of existing approaches and where Model Swarms fits
+Default verification is CPU-only and deterministic. For full paper-style experiments (Module 6), additionally install heavy deps:
+
+```bash
+uv sync --group heavy
+```
+
+You may also need:
+
+1. GPU-enabled machine
+2. Hugging Face auth for gated models
+3. Original repo + model artifacts
+
+```bash
+git clone https://github.com/BunsenFeng/model_swarm.git
+cd model_swarm
+huggingface-cli login
+# follow upstream instructions for heavyweight downloads / training
+```
 
 ---
 
 ## Repository Structure
 
-```
+```text
 model-swarms-course/
-├── README.md                              # This file (syllabus)
-├── module_01_introduction.ipynb           # Why Model Swarms?
-├── module_02_swarm_intelligence.ipynb     # PSO theory + implementation
-├── module_03_lora_and_merging.ipynb       # LoRA & model merging background
-├── module_04_algorithm_deep_dive.ipynb    # The core algorithm
-├── module_05_code_walkthrough.ipynb       # Reading the real code
-├── module_06_hands_on_lab.ipynb           # Running experiments
-├── module_07_results_analysis.ipynb       # Understanding the results
-├── module_08_advanced_topics.ipynb        # Extensions & open problems
-└── exercises.ipynb                        # Standalone coding challenges
+├── .mise.toml
+├── pyproject.toml
+├── uv.lock
+├── src/model_swarms_course/             # shared course utilities used by notebooks
+├── tests/                               # deterministic unit tests
+├── docs/engineering-workflow.md         # contributor workflow
+├── module_01_introduction.ipynb
+├── ...
+└── exercises.ipynb
 ```
+
+For daily development conventions and troubleshooting, see [`docs/engineering-workflow.md`](docs/engineering-workflow.md).
